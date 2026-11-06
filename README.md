@@ -4,8 +4,11 @@
 **Programme:** Master of Information Technology (Postgraduate)  
 **Institution:** School of Postgraduate Studies, MIVA Open University  
 **Academic Session:** 2026/2027  
-**Total Marks:** 40 Marks  
-**Repository Platform:** GitHub (Private / Assessor Access Enabled)  
+**Candidate Name:** Ugochukwu Ndubuisi  
+**Student ID:** 301828772  
+**Institutional Email:** u.ndubuisi8772@miva.edu.ng  
+**Repository URL:** https://github.com/undubuisi8772-prog/advanced-database-portfolio  
+**Total Assessment Marks:** 40 Marks  
 
 ---
 
@@ -14,13 +17,13 @@
 ### 1.1 Organisation Profile
 **PaySphere Financial Technologies Ltd.** is a licensed Tier-1 digital payment service provider and neo-banking institution delivering real-time peer-to-peer (P2P) transfers, multi-currency customer wallets, automated merchant settlement, and institutional utility bill processing. 
 
-To maintain strict regulatory compliance with Central Bank operational directives and AML/CFT guidelines, PaySphere enforces an **immutable double-entry general ledger architecture**. Every monetary transaction requires at least two balanced ledger postings ($\sum \text{Debits} = \sum \text{Credits}$), guaranteeing zero balance drift.
+To maintain regulatory compliance with Central Bank operational directives and AML/CFT guidelines, PaySphere enforces an **immutable double-entry general ledger architecture**. Every monetary transaction requires at least two balanced ledger postings ($\sum \text{Debits} = \sum \text{Credits}$), guaranteeing zero balance drift across accounts.
 
 ### 1.2 System Actors & Supported Operations
-* **Retail & Merchant Users:** Execute peer-to-peer transfers, query real-time multi-currency wallet balances, and extract chronological account statements.
-* **Core Payment Processing Engine:** Executes atomic, idempotent fund transfers with pessimistic concurrency locking (`SELECT ... FOR UPDATE`) to prevent double-spending.
+* **Retail & Merchant Users:** Initiate peer-to-peer transfers, query real-time multi-currency balances, and generate chronological ledger statements.
+* **Payment Gateway Engine:** Executes atomic, idempotent fund transfers with pessimistic concurrency locking (`SELECT ... FOR UPDATE`) to eliminate double-spending.
 * **Compliance & AML Officers:** Monitor real-time transaction velocity, investigate flagged transactions, and audit Know-Your-Customer (KYC) documentation.
-* **Operations & DBA Teams:** Run end-of-day (EOD) financial reconciliations, manage database replication topologies, and oversee horizontal data partitioning.
+* **Operations & DBA Teams:** Execute end-of-day (EOD) financial reconciliations, oversee replication topologies, and manage horizontal data partitioning.
 
 ---
 
@@ -75,14 +78,14 @@ advanced-database-portfolio/
 | **Portfolio 3** | **Transactions & Concurrency** | **7 Marks** | PL/pgSQL stored procedure with deterministic lock ordering (deadlock prevention); pessimistic row locking (`FOR UPDATE`); verified zero orphaned ledger records upon rollback. |
 | **Portfolio 4** | **NoSQL & Advanced Data Models** | **7 Marks** | Polyglot document model for semi-structured fraud telemetry; GIN indexing on nested JSONB; sub-millisecond JSON path querying (`@>`) and platform aggregation. |
 | **Portfolio 5** | **Distributed & Cloud Databases** | **6 Marks** | Declarative range table partitioning by fiscal year; verified automatic shard routing and optimizer **Partition Pruning**; formal **CP / PC/EC** banking classification. |
-| **Final Docs** | **Synthesis & Technical Reflection** | **6 Marks** | Consolidated 2–3 page LMS submission report, academic references, and AI Use Declaration. |
+| **Final Docs** | **Synthesis & Technical Reflection** | **6 Marks** | Consolidated LMS submission report, academic references, and AI Use Declaration. |
 | **Total** | | **40 Marks** | |
 
 ---
 
 ## 4. Empirical Query Optimization Benchmark Matrix
 
-Below are the actual benchmark results captured using `EXPLAIN (ANALYZE, BUFFERS)` on the 100,000-record dataset:
+Captured using `EXPLAIN (ANALYZE, BUFFERS)` on the 100,000-record dataset:
 
 ```text
 ========================================================================================================
@@ -105,13 +108,7 @@ Exp 3: Tier Volume Join        Hash Join (Full Scan)          Index-Assisted Has
 
 All activities were developed, executed, and benchmarked on **Ubuntu Linux (x86_64)** running **PostgreSQL 16**.
 
-### Prerequisites
-* Ubuntu 20.04 / 22.04 / 24.04 LTS
-* PostgreSQL 14+ (`sudo apt install postgresql postgresql-contrib -y`)
-
 ### Automated Setup & Execution Script
-Clone the repository and run the portfolio modules in order:
-
 ```bash
 # 1. Switch to PostgreSQL prompt and create the database
 sudo -u postgres psql -c "CREATE DATABASE paysphere_db;"
